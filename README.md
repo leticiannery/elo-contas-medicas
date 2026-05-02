@@ -1,30 +1,35 @@
-# Calculadora Moderna
+# Elo Contas Médicas - Gestão e Auditoria em Saúde
 
-Um projeto de calculadora simples, funcional e com design moderno, desenvolvido com as tecnologias fundamentais da web.
+Este é o repositório oficial do site da **Elo Contas Médicas**, uma empresa especializada em consultoria, auditoria técnica e gestão de faturamento hospitalar e clínicas médicas.
+
+## Sobre o Projeto
+
+O site foi desenvolvido para servir como o cartão de visitas digital da empresa, focado em transmitir autoridade, experiência técnica e segurança para gestores de saúde que buscam blindar seu faturamento.
+
+### Principais Funcionalidades:
+- **Design Responsivo:** Adaptado para dispositivos móveis e desktops.
+- **Identidade Visual:** Uso consistente da marca Elo.
+- **Otimização SEO:** Configuração de Meta Tags para melhor ranqueamento.
+- **Integração Open Graph:** Visualização profissional em compartilhamentos no WhatsApp e Redes Sociais.
 
 ## Tecnologias Utilizadas
 
-O projeto foi construído utilizando:
-- **HTML5**: Estrutura dos elementos e botões.
-- **CSS3**: Estilização moderna utilizando **Flexbox** e **CSS Grid** para o layout das teclas.
-- **JavaScript**: Lógica das operações matemáticas utilizando a função `eval()`.
+- **HTML5:** Estrutura do conteúdo.
+- **CSS3:** Estilização e layout.
+- **GitHub:** Hospedagem de código e controle de versão.
+- **Vercel:** Plataforma de deploy e hospedagem do site.
 
+## Estrutura de Arquivos
 
-## Funcionalidades
+- `index.html`: Página principal do site.
+- `logo.jpeg`: Logotipo oficial da empresa (usado como favicon).
+- `opengraph.png`: Imagem otimizada para compartilhamento em redes sociais.
 
-- **Operações Básicas**: Soma, subtração, multiplicação e divisão.
-- **Cálculos Decimais**: Suporte para números com ponto.
-- **Limpar (C)**: Função para apagar todo o conteúdo do visor.
-- **Apagar (Back)**: Função para apagar o último caractere digitado.
-- **Design Responsivo**: Layout centralizado e moderno que se adapta visualmente.
+## Deploy
 
-## Demonstração
+O site está disponível em: [www.elocontasmedicas.com.br](https://www.elocontasmedicas.com.br)
 
-*foto*
+O deploy é feito automaticamente via **Vercel** sempre que há uma atualização na branch `main`.
 
-
-## Como rodar 
-
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/leticiannery/calculadora.git
+---
+*Desenvolvido por Leticia Nery*
