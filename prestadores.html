@@ -14,6 +14,7 @@
     <title>Serviços para prestadores | Elo Saúde</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        /* PALETA ELO (nova identidade): roxo principal, azul e verde-água de apoio */
         tailwind.config = { theme: { extend: { colors: {
             elo: { DEFAULT: '#7b2fe0', light: '#b45cff', navy: '#150f4f' },
             'elo-blue': '#0171ef',
@@ -40,6 +41,7 @@
             transition: all 0.3s ease;
         }
         .card-premium:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(123,47,224,0.18); }
+        /* Cards de serviço: ao passar o mouse (ou tocar, no celular) o card se estende e mostra o texto */
         .servico { outline: none; cursor: pointer; }
         .servico:hover, .servico:focus-within, .servico.aberto { z-index: 30; }
         .servico .servico-card:hover { transform: none; }
@@ -52,19 +54,22 @@
             opacity: 0; visibility: hidden; transform: translateY(-6px);
             transition: opacity .25s ease, transform .25s ease, visibility .25s;
         }
-        @media (hover: hover) {
+        @media (hover: hover) and (min-width: 640px) {
             .servico:hover .servico-desc, .servico:focus-within .servico-desc { opacity: 1; visibility: visible; transform: none; }
             .servico:hover .servico-card, .servico:focus-within .servico-card {
                 border-bottom-left-radius: 0; border-bottom-right-radius: 0; box-shadow: 0 20px 40px rgba(123,47,224,0.18);
             }
             .servico:hover .servico-seta, .servico:focus-within .servico-seta { transform: rotate(180deg); }
         }
-        @media (hover: none) {
+        @media (hover: none), (max-width: 639px) {
+            /* celular: o texto abre DENTRO da caixinha, empurrando as de baixo (sem sobrepor) */
+            .servico .servico-card { height: auto; }
             .servico-desc { position: static; display: none; margin-top: 0; opacity: 1; visibility: visible; transform: none; box-shadow: none; }
             .servico.aberto .servico-desc { display: block; }
             .servico.aberto .servico-card { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
             .servico.aberto .servico-seta { transform: rotate(180deg); }
         }
+        /* Fundo com foto nas subpáginas: troque o arquivo em --foto (no <style> de cada página) */
         .hero-foto {
             background-image: linear-gradient(135deg, #f5eeff 0%, #e6f3ff 60%, #e0fbf8 100%);
             background-position: center; background-size: cover; position: relative;
@@ -77,7 +82,8 @@
         html { scroll-padding-top: 80px; }
         .custom-select { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
         select option { background-color: #150f4f; color: white; }
-        :root { --foto: url('foto-prestadores.jpg'); }
+        /* >>> FOTO DE FUNDO DESTA PÁGINA: salve a imagem com este nome na mesma pasta do site <<< */
+        :root { --foto: url('foto5.png'); }
     </style>
 </head>
 <body class="bg-white text-slate-900 antialiased overflow-x-hidden">
@@ -111,8 +117,8 @@
 
     <header class="hero-foto pt-32 md:pt-44 pb-12 md:pb-20 px-4 md:px-6 relative overflow-hidden">
         <div class="foto-layer"></div>
-        <div class="absolute inset-0 bg-white/80 md:bg-white/80 backdrop-blur-[2px]"></div>
-        <div class="max-w-5xl mx-auto text-center md:text-left relative z-10">
+        <div class="absolute inset-0 bg-white/80 md:bg-white/65 backdrop-blur-[2px]"></div>
+        <div class="max-w-5xl mx-auto text-left relative z-10">
             <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">
                 <a href="index.html" class="hover:text-elo">Início</a> <span class="mx-2">/</span> <span class="text-elo">Prestadores</span>
             </p>
@@ -293,7 +299,7 @@
     </section>
 
     <section class="py-12 md:py-24 px-4 md:px-6 bg-white">
-        <div class="max-w-5xl mx-auto bg-elo-navy rounded-[2rem] md:rounded-[3.5rem] p-8 md:p-16 text-center shadow-2xl">
+        <div class="max-w-5xl mx-auto bg-elo-navy rounded-[2rem] md:rounded-[3.5rem] p-8 md:p-16 text-left md:text-center shadow-2xl">
             <h2 class="text-2xl md:text-4xl font-extrabold text-white mb-8 tracking-tight italic leading-tight">
                 Entre em contato para conhecer outras soluções. Resolvemos quase todas as dores!
             </h2>
@@ -305,7 +311,7 @@
                     <i class="fa-solid fa-clipboard-list"></i> Solicite seu diagnóstico gratuito
                 </a>
             </div>
-            <p class="text-slate-400 text-sm mt-6 max-w-xl mx-auto leading-relaxed">
+            <p class="text-slate-400 text-sm mt-6 max-w-xl mx-0 md:mx-auto leading-relaxed">
                 <i class="fa-solid fa-circle-info mr-1 text-elo-teal"></i> Você preencherá um formulário rápido e, <strong class="font-semibold">em seguida, escolherá o dia e o horário</strong> da sua reunião.
             </p>
         </div>
@@ -362,17 +368,17 @@
         function fecharEscolhaWhats() { document.getElementById('modal-whats').classList.add('hidden'); }
         // Em telas de toque (sem mouse), tocar no serviço abre/fecha o texto
         (function () {
-            const toque = window.matchMedia('(hover: none)').matches;
+            const mq = window.matchMedia('(hover: none), (max-width: 639px)');
             const itens = document.querySelectorAll('.servico');
             itens.forEach(function (el) {
                 el.addEventListener('click', function () {
-                    if (!toque) return;
+                    if (!mq.matches) return;
                     const abrir = !el.classList.contains('aberto');
                     itens.forEach(function (o) { o.classList.remove('aberto'); o.setAttribute('aria-expanded', 'false'); });
                     if (abrir) { el.classList.add('aberto'); el.setAttribute('aria-expanded', 'true'); }
                 });
                 el.addEventListener('keydown', function (e) {
-                    if (toque && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); el.click(); }
+                    if (mq.matches && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); el.click(); }
                 });
             });
         })();
