@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <link rel="icon" type="image/png" href="logo.png">
+    <meta property="og:image" content="https://www.elocontasmedicas.com.br/opengraph.png">
+    <meta property="og:image:secure_url" content="https://www.elocontasmedicas.com.br/opengraph.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Solicite o diagnóstico gratuito da Elo Saúde e agende uma reunião.">
+    <title>Diagnóstico Gratuito e Agendamento | Elo Saúde</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        /* PALETA ELO (nova identidade): roxo principal, azul e verde-água de apoio */
+        tailwind.config = { theme: { extend: { colors: {
+            elo: { DEFAULT: '#7b2fe0', light: '#b45cff', navy: '#150f4f' },
+            'elo-blue': '#0171ef',
+            'elo-teal': '#14d9c8',
+            purple: { 50:'#f5eeff', 100:'#ebdcff', 200:'#d9bdff', 300:'#c79bff', 400:'#ad6dff', 500:'#9344f0', 600:'#7b2fe0', 700:'#6422bd', 800:'#4d1a93', 900:'#37126a' }
+        } } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        :root { --elo: #7b2fe0; --elo-blue: #0171ef; --elo-teal: #14d9c8; --elo-navy: #150f4f; }
+        .text-elo { color: #7b2fe0; }
+        .bg-grad { background: linear-gradient(135deg, #7b2fe0 0%, #5a2fe0 55%, #0171ef 100%); }
+        .hero-parallax {
+            background-image: url('foto3.png');
+            background-attachment: fixed; background-position: center;
+            background-repeat: no-repeat; background-size: cover; position: relative;
+        }
+        @media (max-width: 768px) { .hero-parallax { background-attachment: scroll; } }
+        .card-premium {
+            background: linear-gradient(90deg, #7b2fe0 0%, #0171ef 70%, #14d9c8 100%) top / 100% 4px no-repeat, #ffffff;
+            border: 1px solid rgba(0,0,0,0.05); border-top-width: 4px; border-top-color: transparent;
+            transition: all 0.3s ease;
+        }
+        .card-premium:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(123,47,224,0.18); }
+        /* Fundo com foto nas subpáginas: troque o arquivo em --foto (no <style> de cada página) */
+        .hero-foto {
+            background-image: linear-gradient(135deg, #f5eeff 0%, #e6f3ff 60%, #e0fbf8 100%);
+            background-position: center; background-size: cover; position: relative;
+        }
+        .hero-foto .foto-layer {
+            position: absolute; inset: 0; background-image: var(--foto);
+            background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;
+        }
+        @media (max-width: 768px) { .hero-foto .foto-layer { background-attachment: scroll; } }
+        html { scroll-padding-top: 80px; }
+        .custom-select { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+        select option { background-color: #150f4f; color: white; }
+    </style>
+</head>
+<body class="bg-white text-slate-900 antialiased overflow-x-hidden">
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
+        <div class="h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 md:gap-3">
+                <img src="logo.png" alt="Logo Elo" class="h-9 md:h-12 w-auto object-contain">
+                <div class="font-extrabold text-sm md:text-xl tracking-tighter text-slate-900 uppercase">
+                    Elo <span class="text-elo">Contas Médicas</span>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest">
+                <a href="prestadores.html" class="bg-elo-navy text-white hover:bg-elo px-4 py-2.5 rounded-full transition">Prestadores</a>
+                <a href="operadoras.html" class="bg-elo-navy text-white hover:bg-elo px-4 py-2.5 rounded-full transition">Operadoras</a>
+                <a href="tecnologia.html" class="bg-elo-navy text-white hover:bg-elo px-4 py-2.5 rounded-full transition">Tecnologia</a>
+                <a href="diagnostico.html" class="border-2 border-elo text-elo px-4 py-2 rounded-full hover:bg-elo hover:text-white transition">Diagnóstico Gratuito</a>
+            </div>
+            <div class="md:hidden flex items-center gap-2">
+                <a href="diagnostico.html" class="bg-elo text-white text-[10px] px-3 py-2 rounded-full font-bold">CONTATO</a>
+                <button onclick="document.getElementById('menu-mobile').classList.toggle('hidden')" aria-label="Abrir menu" class="w-9 h-9 rounded-full bg-elo-navy text-white flex items-center justify-center"><i class="fa-solid fa-bars text-sm"></i></button>
+            </div>
+        </div>
+        </div>
+        <div id="menu-mobile" class="hidden md:hidden bg-white border-t border-slate-100">
+            <a href="prestadores.html" class="block px-6 py-4 text-sm font-bold text-slate-700 border-b border-slate-100 hover:text-elo">Prestadores</a>
+            <a href="operadoras.html" class="block px-6 py-4 text-sm font-bold text-slate-700 border-b border-slate-100 hover:text-elo">Operadoras</a>
+            <a href="tecnologia.html" class="block px-6 py-4 text-sm font-bold text-slate-700 border-b border-slate-100 hover:text-elo">Tecnologia</a>
+        </div>
+    </nav>
+
+    <main class="pt-28 md:pt-40 pb-16 md:pb-24 px-4 md:px-6 bg-gradient-to-b from-purple-50 to-white">
+        <div class="max-w-6xl mx-auto bg-elo-navy rounded-[2rem] md:rounded-[3.5rem] p-6 md:p-16 shadow-2xl">
+            <div class="grid lg:grid-cols-5 gap-12 md:gap-16">
+                <div class="lg:col-span-2 text-center lg:text-left">
+                    <h1 id="titulo-pagina" class="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight italic leading-tight">
+                        Receba um <br> Diagnóstico <span class="text-elo-teal">Gratuito</span>
+                    </h1>
+                    <p id="texto-pagina" class="text-slate-400 mb-10 text-lg leading-relaxed">Uma oportunidade de conhecermos a sua necessidade e indicarmos as soluções mais adequadas ao seu caso.</p>
+                    <div class="space-y-6 mb-10">
+                <div id="passo-1" class="flex gap-4 items-start">
+                    <div class="passo-num shrink-0 w-9 h-9 rounded-full bg-white/10 text-slate-300 font-black text-sm flex items-center justify-center transition">1</div>
+                    <div class="text-left"><p class="text-white font-bold text-sm md:text-base">Seleção do serviço</p><p class="text-slate-400 text-xs md:text-sm">Prestadores, operadoras ou tecnologia.</p></div>
+                </div>
+                <div id="passo-2" class="flex gap-4 items-start">
+                    <div class="passo-num shrink-0 w-9 h-9 rounded-full bg-white/10 text-slate-300 font-black text-sm flex items-center justify-center transition">2</div>
+                    <div class="text-left"><p class="text-white font-bold text-sm md:text-base">Solicitação do diagnóstico</p><p class="text-slate-400 text-xs md:text-sm">Dados da empresa e principal necessidade.</p></div>
+                </div>
+                <div id="passo-3" class="flex gap-4 items-start">
+                    <div class="passo-num shrink-0 w-9 h-9 rounded-full bg-white/10 text-slate-300 font-black text-sm flex items-center justify-center transition">3</div>
+                    <div class="text-left"><p class="text-white font-bold text-sm md:text-base">Agendamento da reunião</p><p class="text-slate-400 text-xs md:text-sm">Logo após enviar, você escolhe o dia e o horário.</p></div>
+                </div>
+                <div id="passo-4" class="flex gap-4 items-start">
+                    <div class="passo-num shrink-0 w-9 h-9 rounded-full bg-white/10 text-slate-300 font-black text-sm flex items-center justify-center transition">4</div>
+                    <div class="text-left"><p class="text-white font-bold text-sm md:text-base">Reunião agendada</p><p class="text-slate-400 text-xs md:text-sm">Confirmação para você e para a Elo.</p></div>
+                </div>
+                    </div>
+                    <div class="space-y-4 text-slate-300 text-left border-t border-white/10 pt-8">
+                        <a href="javascript:abrirEscolhaWhats()" class="flex items-center gap-4 hover:text-green-400 transition text-sm md:text-base">
+                            <span class="w-10 h-10 bg-white/5 rounded-2xl flex items-center justify-center text-green-500"><i class="fa-brands fa-whatsapp text-xl"></i></span> Nosso Whatsapp
+                        </a>
+                        <a href="mailto:elocontasmedicas@gmail.com" class="flex items-center gap-4 hover:text-purple-400 transition text-sm md:text-base">
+                            <span class="w-10 h-10 bg-white/5 rounded-2xl flex items-center justify-center text-purple-400"><i class="fa-solid fa-envelope"></i></span> elocontasmedicas@gmail.com
+                        </a>
+                        <a href="https://instagram.com/gestaoprasaude" target="_blank" class="flex items-center gap-4 hover:text-pink-400 transition text-sm md:text-base">
+                            <span class="w-10 h-10 bg-white/5 rounded-2xl flex items-center justify-center text-pink-500"><i class="fa-brands fa-instagram"></i></span> @gestaoprasaude
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3">
+                    <div id="aviso-fluxo" class="mb-5 rounded-2xl border border-elo-teal/40 bg-elo-teal/10 p-5 flex gap-4 items-start text-left">
+                        <div class="shrink-0 w-10 h-10 rounded-xl bg-elo-teal/20 text-elo-teal flex items-center justify-center"><i class="fa-solid fa-calendar-check"></i></div>
+                        <p class="text-slate-200 text-sm md:text-base leading-relaxed"><strong class="text-white">Como funciona:</strong> você preenche este formulário (leva 1 minuto) e, <strong class="text-white">logo depois de enviar, escolhe o dia e o horário da sua reunião</strong> com a nossa equipe.</p>
+                    </div>
+                    <form id="meu-formulario" action="https://formspree.io/f/xykoyjej" method="POST" class="bg-white/5 p-6 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] border border-white/10 space-y-4 h-fit">
+                        <div class="relative w-full text-left">
+                            <select id="area" name="area" class="custom-select w-full bg-white/10 border border-white/10 px-6 py-4 rounded-2xl text-white outline-none focus:border-elo focus:bg-white/20 transition text-sm cursor-pointer">
+                                <option value="" disabled selected>Área de interesse</option>
+                                <option value="prestadores">Prestadores (clínicas, hospitais e profissionais)</option>
+                                <option value="operadoras">Operadoras (gestão e eficiência assistencial)</option>
+                                <option value="tecnologia">Tecnologia (sistemas e automações)</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-slate-400"><i class="fa-solid fa-chevron-down text-xs"></i></div>
+                            <p id="erro-area" class="hidden text-[13px] text-red-400 mt-1 ml-2 italic">Selecione a área de interesse.</p>
+                        </div>
+                        <div class="w-full text-left">
+                            <input type="text" id="nome" name="nome" placeholder="Nome do responsável" class="w-full bg-white/10 border border-white/10 px-6 py-4 rounded-2xl text-white placeholder-slate-400 outline-none focus:border-elo focus:bg-white/20 transition text-sm">
+                            <p id="erro-nome" class="hidden text-[13px] text-red-400 mt-1 ml-2 italic">Preencha com nome e sobrenome.</p>
+                        </div>
+                        <div class="w-full text-left">
+                            <input type="text" id="empresa" name="empresa" placeholder="Empresa" class="w-full bg-white/10 border border-white/10 px-6 py-4 rounded-2xl text-white placeholder-slate-400 outline-none focus:border-elo focus:bg-white/20 transition text-sm">
+                            <p id="erro-empresa" class="hidden text-[13px] text-red-400 mt-1 ml-2 italic">Preencha o nome da empresa.</p>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="w-full text-left">
+                                <input type="email" id="email" name="email" placeholder="Seu melhor e-mail" class="w-full bg-white/10 border border-white/10 px-6 py-4 rounded-2xl text-white placeholder-slate-400 outline-none focus:border-elo focus:bg-white/20 transition text-sm">
+                                <p id="erro-email" class="hidden text-[13px] text-red-400 mt-1 ml-2 italic">Insira um e-mail válido.</p>
+                            </div>
+                            <div class="w-full text-left">
+                                <input type="tel" id="telefone" name="telefone" placeholder="WhatsApp com DDD" class="w-full bg-white/10 border border-white/10 px-6 py-4 rounded-2xl text-white placeholder-slate-400 outline-none focus:border-elo focus:bg-white/20 transition text-sm">
+                                <p id="erro-telefone" class="hidden text-[13px] text-red-400 mt-1 ml-2 italic">Digite um número válido com DDD.</p>
+                            </div>
+                        </div>
+                        <div class="w-full text-left">
+                            <textarea id="necessidade" name="necessidade" placeholder="Qual é a sua principal necessidade?" class="w-full bg-white/10 border border-white/10 px-6 py-4 rounded-2xl text-white placeholder-slate-400 outline-none focus:border-elo focus:bg-white/20 transition text-sm h-32 resize-none"></textarea>
+                            <p id="erro-necessidade" class="hidden text-[13px] text-red-400 mt-1 ml-2 italic">Conte-nos brevemente sua necessidade.</p>
+                        </div>
+                        <button type="submit" id="btn-enviar" class="w-full bg-elo text-white py-4 rounded-2xl font-bold uppercase tracking-widest hover:opacity-90 transition shadow-xl">ENVIAR E ESCOLHER HORÁRIO DA REUNIÃO</button>
+                        <p id="erro-servidor" class="hidden text-red-400 font-bold text-center text-sm italic">Erro no envio. Verifique os dados ou tente pelo WhatsApp.</p>
+                    </form>
+
+                    <div id="sucesso" class="hidden bg-white/5 p-8 md:p-12 rounded-[1.5rem] md:rounded-[2.5rem] border border-white/10 text-center">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-green-500/10 text-green-400 text-3xl flex items-center justify-center mb-6"><i class="fa-solid fa-circle-check"></i></div>
+                        <h2 class="text-white text-2xl md:text-3xl font-extrabold italic mb-4">Solicitação recebida!</h2>
+                        <p class="text-slate-300 text-lg leading-relaxed mb-3"><strong class="text-white">Falta só um passo:</strong> escolha o dia e o horário da sua reunião.</p>
+                        <p class="text-slate-400 text-base leading-relaxed mb-8">Ao clicar no botão abaixo você abrirá a agenda da Elo. Você receberá a confirmação por e-mail e a nossa equipe também será avisada.</p>
+                        <a id="btn-agendar" href="#" target="_blank" rel="noopener" class="hidden bg-elo text-white px-8 py-4 rounded-2xl font-bold uppercase tracking-widest text-sm hover:opacity-90 transition shadow-xl inline-flex items-center gap-3">
+                            <i class="fa-solid fa-calendar-check"></i> Agendar minha reunião
+                        </a>
+                        <p class="text-slate-400 text-sm mt-6">Prefere falar agora? <a href="javascript:abrirEscolhaWhats()" class="text-elo-teal font-bold hover:underline">Chame no WhatsApp</a>.</p>
+                        <p id="sem-agenda" class="hidden text-slate-400 text-base">Entraremos em contato em breve para combinar o melhor horário.</p>
+                        <p class="text-slate-400 text-base mt-8">Aproveite para seguir nossa página:
+                            <a href="https://instagram.com/gestaoprasaude" target="_blank" class="text-purple-300 font-bold hover:underline ml-1">@gestaoprasaude</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="modal-whats" class="hidden fixed inset-0 z-[60] flex items-center justify-center px-4">
+        <div onclick="fecharEscolhaWhats()" class="absolute inset-0 bg-elo-navy/60 backdrop-blur-sm"></div>
+        <div class="bg-white p-8 rounded-[2.5rem] relative z-10 w-full max-w-sm shadow-2xl text-center">
+            <h3 class="text-2xl font-black text-slate-900 mb-2 italic">Unidade Elo</h3>
+            <p class="text-slate-500 mb-8 text-sm italic">Selecione a região para atendimento:</p>
+            <div class="space-y-4">
+                <a href="https://wa.me/5561998190941" target="_blank" class="flex items-center justify-between bg-slate-50 p-5 rounded-2xl hover:border-elo border border-transparent transition group">
+                    <span class="font-bold text-slate-700 group-hover:text-elo text-left">Brasília e Região</span>
+                    <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-elo text-xs"></i>
+                </a>
+                <a href="https://wa.me/5582993721668" target="_blank" class="flex items-center justify-between bg-slate-50 p-5 rounded-2xl hover:border-elo border border-transparent transition group">
+                    <span class="font-bold text-slate-700 group-hover:text-elo text-left">Alagoas e Região</span>
+                    <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-elo text-xs"></i>
+                </a>
+            </div>
+            <button onclick="fecharEscolhaWhats()" class="mt-8 text-slate-400 text-xs font-bold uppercase tracking-widest hover:text-slate-600">Cancelar</button>
+        </div>
+    </div>
+
+    <footer class="py-12 text-center px-4 bg-slate-50">
+        <p class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.4em]">© 2026 Elo Contas Médicas - Gestão &amp; Auditoria</p>
+        <p class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.4em]">CNPJ: 52.633.702-0001-06</p>
+    </footer>
+
+    <a href="javascript:abrirEscolhaWhats()" aria-label="WhatsApp" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-green-500 text-white w-14 h-14 md:w-16 md:h-16 rounded-2xl shadow-2xl hover:scale-110 transition-all z-50 flex items-center justify-center text-2xl md:text-3xl">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function abrirEscolhaWhats() { document.getElementById('modal-whats').classList.remove('hidden'); }
+        function fecharEscolhaWhats() { document.getElementById('modal-whats').classList.add('hidden'); }
+
+        // ====== CONFIGURAÇÃO ======
+        // Link da plataforma de agendamentos (Calendly da Elo)
+        const LINK_AGENDAMENTO = "https://calendly.com/comercial-elosaude/agenda";
+        // ==========================
+
+        const AREAS = { prestadores: "Prestadores", operadoras: "Operadoras", tecnologia: "Tecnologia" };
+
+        function marcarPasso(n) {
+            document.querySelectorAll('.passo-num').forEach((el, i) => {
+                const ativo = (i + 1) <= n;
+                el.classList.toggle('bg-elo', ativo);
+                el.classList.toggle('text-white', ativo);
+                el.classList.toggle('bg-white/10', !ativo);
+                el.classList.toggle('text-slate-300', !ativo);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const params = new URLSearchParams(window.location.search);
+            const area = params.get('area');
+            const selectArea = document.getElementById('area');
+            if (area && AREAS[area]) selectArea.value = area;
+            if (params.get('acao') === 'reuniao') {
+                document.getElementById('titulo-pagina').innerHTML = 'Agende sua <span class="text-elo-teal">reunião</span>';
+                document.getElementById('texto-pagina').textContent = 'Preencha os dados abaixo para conhecermos a sua necessidade e, em seguida, escolha o melhor horário.';
+            }
+            marcarPasso(selectArea.value ? 2 : 1);
+            selectArea.addEventListener('change', () => marcarPasso(selectArea.value ? 2 : 1));
+
+            const form = document.getElementById('meu-formulario');
+            const btn = document.getElementById('btn-enviar');
+            const TXT_BTN = 'ENVIAR E ESCOLHER HORÁRIO DA REUNIÃO';
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                document.querySelectorAll('[id^="erro-"]').forEach(el => el.classList.add('hidden'));
+                let erro = false;
+                const falha = id => { document.getElementById('erro-' + id).classList.remove('hidden'); erro = true; };
+
+                const nome = document.getElementById('nome').value.trim();
+                const empresa = document.getElementById('empresa').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const fone = document.getElementById('telefone').value.replace(/\D/g, '');
+
+                if (nome.split(' ').filter(w => w).length < 2) falha('nome');
+                if (!empresa) falha('empresa');
+                if (!email.includes('@') || !email.includes('.')) falha('email');
+                if (fone.length < 10 || fone.length > 11) falha('telefone');
+                if (!selectArea.value) falha('area');
+                if (!document.getElementById('necessidade').value.trim()) falha('necessidade');
+                if (erro) return;
+
+                btn.innerText = 'ENVIANDO...';
+                btn.disabled = true;
+                try {
+                    const dados = new FormData(form);
+                    dados.set('area', AREAS[selectArea.value]);
+                    const r = await fetch(form.action, { method: 'POST', body: dados, headers: { 'Accept': 'application/json' } });
+                    if (r.ok) {
+                        form.reset();
+                        form.classList.add('hidden');
+                        document.getElementById('aviso-fluxo').classList.add('hidden');
+                        document.getElementById('sucesso').classList.remove('hidden');
+                        if (LINK_AGENDAMENTO) {
+                            const b = document.getElementById('btn-agendar');
+                            // pré-preenche nome e e-mail no Calendly
+                            const u = new URL(LINK_AGENDAMENTO);
+                            u.searchParams.set('name', nome);
+                            u.searchParams.set('email', email);
+                            b.href = u.toString();
+                            b.classList.remove('hidden');
+                            marcarPasso(3);
+                        } else {
+                            document.getElementById('sem-agenda').classList.remove('hidden');
+                            marcarPasso(2);
+                        }
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        document.getElementById('erro-servidor').classList.remove('hidden');
+                        btn.innerText = TXT_BTN; btn.disabled = false;
+                    }
+                } catch (err) {
+                    document.getElementById('erro-servidor').classList.remove('hidden');
+                    btn.innerText = TXT_BTN; btn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

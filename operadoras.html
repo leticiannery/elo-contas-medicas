@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <link rel="icon" type="image/png" href="logo.png">
+    <meta property="og:image" content="https://www.elocontasmedicas.com.br/opengraph.png">
+    <meta property="og:image:secure_url" content="https://www.elocontasmedicas.com.br/opengraph.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Serviços para operadoras. Mais previsibilidade para a despesa assistencial, eficiência operacional e uma rede alinhada às necessidades da sua operadora.">
+    <title>Serviços para operadoras | Elo Saúde</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: {
+            elo: { DEFAULT: '#7b2fe0', light: '#b45cff', navy: '#150f4f' },
+            'elo-blue': '#0171ef',
+            'elo-teal': '#14d9c8',
+            purple: { 50:'#f5eeff', 100:'#ebdcff', 200:'#d9bdff', 300:'#c79bff', 400:'#ad6dff', 500:'#9344f0', 600:'#7b2fe0', 700:'#6422bd', 800:'#4d1a93', 900:'#37126a' }
+        } } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        :root { --elo: #7b2fe0; --elo-blue: #0171ef; --elo-teal: #14d9c8; --elo-navy: #150f4f; }
+        .text-elo { color: #7b2fe0; }
+        .bg-grad { background: linear-gradient(135deg, #7b2fe0 0%, #5a2fe0 55%, #0171ef 100%); }
+        .hero-parallax {
+            background-image: url('foto.png');
+            background-attachment: fixed; background-position: center;
+            background-repeat: no-repeat; background-size: cover; position: relative;
+        }
+        @media (max-width: 768px) { .hero-parallax { background-attachment: scroll; } }
+        .card-premium {
+            background: linear-gradient(90deg, #7b2fe0 0%, #0171ef 70%, #14d9c8 100%) top / 100% 4px no-repeat, #ffffff;
+            border: 1px solid rgba(0,0,0,0.05); border-top-width: 4px; border-top-color: transparent;
+            transition: all 0.3s ease;
+        }
+        .card-premium:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(123,47,224,0.18); }
+        .servico { outline: none; cursor: pointer; }
+        .servico:hover, .servico:focus-within, .servico.aberto { z-index: 30; }
+        .servico .servico-card:hover { transform: none; }
+        .servico-seta { transition: transform .3s ease; }
+        .servico-desc {
+            position: absolute; left: 0; right: 0; top: 100%; margin-top: -1px;
+            background: #fff; border: 1px solid rgba(0,0,0,0.05); border-top: 0;
+            border-radius: 0 0 1.5rem 1.5rem; padding: 0 1.5rem 1.5rem;
+            box-shadow: 0 20px 40px rgba(123,47,224,0.18);
+            opacity: 0; visibility: hidden; transform: translateY(-6px);
+            transition: opacity .25s ease, transform .25s ease, visibility .25s;
+        }
+        @media (hover: hover) {
+            .servico:hover .servico-desc, .servico:focus-within .servico-desc { opacity: 1; visibility: visible; transform: none; }
+            .servico:hover .servico-card, .servico:focus-within .servico-card {
+                border-bottom-left-radius: 0; border-bottom-right-radius: 0; box-shadow: 0 20px 40px rgba(123,47,224,0.18);
+            }
+            .servico:hover .servico-seta, .servico:focus-within .servico-seta { transform: rotate(180deg); }
+        }
+        @media (hover: none) {
+            .servico-desc { position: static; display: none; margin-top: 0; opacity: 1; visibility: visible; transform: none; box-shadow: none; }
+            .servico.aberto .servico-desc { display: block; }
+            .servico.aberto .servico-card { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+            .servico.aberto .servico-seta { transform: rotate(180deg); }
+        }
+        .hero-foto {
+            background-image: linear-gradient(135deg, #f5eeff 0%, #e6f3ff 60%, #e0fbf8 100%);
+            background-position: center; background-size: cover; position: relative;
+        }
+        .hero-foto .foto-layer {
+            position: absolute; inset: 0; background-image: var(--foto);
+            background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;
+        }
+        @media (max-width: 768px) { .hero-foto .foto-layer { background-attachment: scroll; } }
+        html { scroll-padding-top: 80px; }
+        .custom-select { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+        select option { background-color: #150f4f; color: white; }
+        :root { --foto: url('foto-operadoras.png'); }
+    </style>
+</head>
+<body class="bg-white text-slate-900 antialiased overflow-x-hidden">
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
+        <div class="h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 w-full flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 md:gap-3">
+                <img src="logo.png" alt="Logo Elo" class="h-9 md:h-12 w-auto object-contain">
+                <div class="font-extrabold text-sm md:text-xl tracking-tighter text-slate-900 uppercase">
+                    Elo <span class="text-elo">Contas Médicas</span>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest">
+                <a href="prestadores.html" class="bg-elo-navy text-white hover:bg-elo px-4 py-2.5 rounded-full transition">Prestadores</a>
+                <a href="operadoras.html" class="bg-elo text-white px-4 py-2.5 rounded-full transition">Operadoras</a>
+                <a href="tecnologia.html" class="bg-elo-navy text-white hover:bg-elo px-4 py-2.5 rounded-full transition">Tecnologia</a>
+                <a href="diagnostico.html" class="border-2 border-elo text-elo px-4 py-2 rounded-full hover:bg-elo hover:text-white transition">Diagnóstico Gratuito</a>
+            </div>
+            <div class="md:hidden flex items-center gap-2">
+                <a href="diagnostico.html" class="bg-elo text-white text-[10px] px-3 py-2 rounded-full font-bold">CONTATO</a>
+                <button onclick="document.getElementById('menu-mobile').classList.toggle('hidden')" aria-label="Abrir menu" class="w-9 h-9 rounded-full bg-elo-navy text-white flex items-center justify-center"><i class="fa-solid fa-bars text-sm"></i></button>
+            </div>
+        </div>
+        </div>
+        <div id="menu-mobile" class="hidden md:hidden bg-white border-t border-slate-100">
+            <a href="prestadores.html" class="block px-6 py-4 text-sm font-bold text-slate-700 border-b border-slate-100 hover:text-elo">Prestadores</a>
+            <a href="operadoras.html" class="block px-6 py-4 text-sm font-bold text-slate-700 border-b border-slate-100 hover:text-elo">Operadoras</a>
+            <a href="tecnologia.html" class="block px-6 py-4 text-sm font-bold text-slate-700 border-b border-slate-100 hover:text-elo">Tecnologia</a>
+        </div>
+    </nav>
+
+    <header class="hero-foto pt-32 md:pt-44 pb-12 md:pb-20 px-4 md:px-6 relative overflow-hidden">
+        <div class="foto-layer"></div>
+        <div class="absolute inset-0 bg-white/80 md:bg-white/80 backdrop-blur-[2px]"></div>
+        <div class="max-w-5xl mx-auto text-center md:text-left relative z-10">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">
+                <a href="index.html" class="hover:text-elo">Início</a> <span class="mx-2">/</span> <span class="text-elo">Operadoras</span>
+            </p>
+            <span class="inline-block text-elo font-black text-sm tracking-[0.3em] mb-3">OPERADORAS</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tighter leading-tight mb-6 text-slate-950 italic">
+                SERVIÇOS PARA OPERADORAS
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-800 max-w-3xl leading-relaxed font-semibold mb-5">Mais previsibilidade para a despesa assistencial, eficiência operacional e uma rede alinhada às necessidades da sua operadora.</p>
+            <p class="text-base md:text-lg text-slate-600 max-w-3xl leading-relaxed"><span class="font-bold text-slate-900">Para quem é:</span> Operadoras de planos de saúde, autogestões e empresas que precisam de suporte especializado na gestão da rede assistencial, no controle de despesas e nos processos de contas médicas.</p>
+        </div>
+    </header>
+
+    <section class="py-12 md:py-20 px-4 md:px-6 bg-slate-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 pb-16">
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-folder-open"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Gestão e processamento de contas médicas</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Organização do recebimento, conferência, processamento e acompanhamento das contas, com controle de prazos, pendências e aplicação das condições contratadas.</p>
+                    </div>
+                </div>
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-clipboard-check"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Auditoria de contas médicas</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Análise técnica e administrativa das cobranças, identificação de inconsistências e apoio às discussões com os prestadores.</p>
+                    </div>
+                </div>
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-bed-pulse"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Auditoria concorrente</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Estruturação do acompanhamento de internações, implantação de controles de admissões, autorizações, prorrogações, parciais e altas, integrando as equipes administrativas e de auditoria. Inclui visitas à beira do leito, identificação de oportunidades de desospitalização e apoio à implementação de protocolos específicos, em articulação com a equipe assistencial.</p>
+                    </div>
+                </div>
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-handshake"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Negociação e recontratualização da rede</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Revisão de valores, tabelas, regras de cobrança, reajustes e condições operacionais, com simulações do impacto financeiro das propostas.</p>
+                    </div>
+                </div>
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-list-check"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Protocolos e apoio técnico às negociações com prestadores</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Elaboração de diretrizes e critérios para negociação, com definição de valores de referência, parâmetros comerciais, limites de autonomia e fluxos de aprovação. Inclui preparação de propostas e contrapropostas, participação nas negociações e registro das condições pactuadas.</p>
+                    </div>
+                </div>
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-cubes"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Estruturação de pacotes e modelos de remuneração</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Desenvolvimento e negociação de pacotes, diárias globais e outros modelos, com definição de inclusões, exclusões, exceções e critérios de revisão.</p>
+                    </div>
+                </div>
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-network-wired"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Credenciamento e expansão estratégica da rede</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Prospecção e avaliação de prestadores conforme necessidades assistenciais, localização, capacidade de atendimento e condições comerciais, identificando lacunas e alternativas para ampliar o acesso à assistência.</p>
+                    </div>
+                </div>
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-comments"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Gestão do relacionamento com prestadores</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Intermediação de demandas, organização dos canais de comunicação, resolução de pendências e acompanhamento dos compromissos pactuados.</p>
+                    </div>
+                </div>
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-pills"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Gestão de compras, negociação e auditoria de OPME, materiais e medicamentos</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Gestão de cotações e compras, comparação de fornecedores e condições comerciais, negociação e identificação de distorções. Inclui auditoria de OPME in loco e acompanhamento cirúrgico para conferência dos itens autorizados, disponibilizados, utilizados e cobrados.</p>
+                    </div>
+                </div>
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-chart-line"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Inteligência de custos e utilização assistencial</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Análises por prestador, especialidade, procedimento e período, identificando concentração de despesas, variações de preços e oportunidades de melhoria.</p>
+                    </div>
+                </div>
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-diagram-project"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Reestruturação de processos e capacitação de equipes</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Mapeamento de gargalos, definição de responsabilidades, padronização de rotinas e implantação acompanhada, com transferência da operação para a equipe interna.</p>
+                    </div>
+                </div>
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Organização de passivos e conciliação com prestadores</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Inventário de contas pendentes, divergências, glosas e cobranças acumuladas, com organização documental e apoio à construção de acordos administrativos.</p>
+                    </div>
+                </div>
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-rocket"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Apoio operacional à implantação de novas coberturas</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Organização dos impactos sobre rede, contratos, tabelas, sistemas e fluxos de autorização e cobrança, em articulação com as áreas técnicas responsáveis.</p>
+                    </div>
+                </div>
+                <div class="servico relative" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-premium servico-card h-full p-5 md:p-6 rounded-[1.5rem] flex gap-4 items-center shadow-md text-left">
+                        <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-flask"></i></div>
+                        <h3 class="flex-1 font-extrabold text-slate-900 text-base md:text-lg leading-snug">Estruturação de projetos assistenciais com avaliação de resultados</h3>
+                        <i class="servico-seta fa-solid fa-chevron-down text-elo text-sm"></i>
+                    </div>
+                    <div class="servico-desc">
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">Apoio à construção de projetos piloto com prestadores, definição de indicadores e comparação de custos, utilização e resultados documentados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 md:py-24 px-4 md:px-6 bg-white">
+        <div class="max-w-5xl mx-auto bg-elo-navy rounded-[2rem] md:rounded-[3.5rem] p-8 md:p-16 text-center shadow-2xl">
+            <h2 class="text-2xl md:text-4xl font-extrabold text-white mb-8 tracking-tight italic leading-tight">
+                Entre em contato para conhecer outras soluções. Resolvemos quase todas as dores!
+            </h2>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="diagnostico.html?area=operadoras&amp;acao=reuniao" class="bg-elo text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 hover:opacity-90 transition shadow-xl shadow-purple-900/25">
+                    <i class="fa-solid fa-calendar-check"></i> Clique aqui para marcar uma reunião
+                </a>
+                <a href="diagnostico.html?area=operadoras" class="bg-white/10 border border-white/20 text-white hover:bg-white/20 px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 transition">
+                    <i class="fa-solid fa-clipboard-list"></i> Solicite seu diagnóstico gratuito
+                </a>
+            </div>
+            <p class="text-slate-400 text-sm mt-6 max-w-xl mx-auto leading-relaxed">
+                <i class="fa-solid fa-circle-info mr-1 text-elo-teal"></i> Você preencherá um formulário rápido e, <strong class="font-semibold">em seguida, escolherá o dia e o horário</strong> da sua reunião.
+            </p>
+        </div>
+    </section>
+
+    <section class="pb-16 md:pb-24 px-4 md:px-6 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Conheça também</p>
+            <div class="grid md:grid-cols-2 gap-4">
+                <a href="prestadores.html" class="flex items-center gap-4 bg-white rounded-2xl p-5 border border-slate-100 hover:border-elo hover:shadow-lg transition group">
+                    <div class="w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-hospital"></i></div>
+                    <div class="flex-1 text-left"><p class="font-black uppercase italic text-slate-900 group-hover:text-elo">Prestadores</p><p class="text-slate-500 text-sm">Clínicas, hospitais e profissionais</p></div>
+                    <i class="fa-solid fa-arrow-right text-slate-300 group-hover:text-elo"></i>
+                </a>
+                <a href="tecnologia.html" class="flex items-center gap-4 bg-white rounded-2xl p-5 border border-slate-100 hover:border-elo hover:shadow-lg transition group">
+                    <div class="w-12 h-12 rounded-xl bg-purple-50 text-elo text-xl flex items-center justify-center"><i class="fa-solid fa-microchip"></i></div>
+                    <div class="flex-1 text-left"><p class="font-black uppercase italic text-slate-900 group-hover:text-elo">Tecnologia</p><p class="text-slate-500 text-sm">Sistemas e automações</p></div>
+                    <i class="fa-solid fa-arrow-right text-slate-300 group-hover:text-elo"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div id="modal-whats" class="hidden fixed inset-0 z-[60] flex items-center justify-center px-4">
+        <div onclick="fecharEscolhaWhats()" class="absolute inset-0 bg-elo-navy/60 backdrop-blur-sm"></div>
+        <div class="bg-white p-8 rounded-[2.5rem] relative z-10 w-full max-w-sm shadow-2xl text-center">
+            <h3 class="text-2xl font-black text-slate-900 mb-2 italic">Unidade Elo</h3>
+            <p class="text-slate-500 mb-8 text-sm italic">Selecione a região para atendimento:</p>
+            <div class="space-y-4">
+                <a href="https://wa.me/5561998190941" target="_blank" class="flex items-center justify-between bg-slate-50 p-5 rounded-2xl hover:border-elo border border-transparent transition group">
+                    <span class="font-bold text-slate-700 group-hover:text-elo text-left">Brasília e Região</span>
+                    <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-elo text-xs"></i>
+                </a>
+                <a href="https://wa.me/5582993721668" target="_blank" class="flex items-center justify-between bg-slate-50 p-5 rounded-2xl hover:border-elo border border-transparent transition group">
+                    <span class="font-bold text-slate-700 group-hover:text-elo text-left">Alagoas e Região</span>
+                    <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-elo text-xs"></i>
+                </a>
+            </div>
+            <button onclick="fecharEscolhaWhats()" class="mt-8 text-slate-400 text-xs font-bold uppercase tracking-widest hover:text-slate-600">Cancelar</button>
+        </div>
+    </div>
+
+    <footer class="py-12 text-center px-4 bg-slate-50">
+        <p class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.4em]">© 2026 Elo Contas Médicas - Gestão &amp; Auditoria</p>
+        <p class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.4em]">CNPJ: 52.633.702-0001-06</p>
+    </footer>
+
+    <a href="javascript:abrirEscolhaWhats()" aria-label="WhatsApp" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-green-500 text-white w-14 h-14 md:w-16 md:h-16 rounded-2xl shadow-2xl hover:scale-110 transition-all z-50 flex items-center justify-center text-2xl md:text-3xl">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function abrirEscolhaWhats() { document.getElementById('modal-whats').classList.remove('hidden'); }
+        function fecharEscolhaWhats() { document.getElementById('modal-whats').classList.add('hidden'); }
+        // Em telas de toque (sem mouse), tocar no serviço abre/fecha o texto
+        (function () {
+            const toque = window.matchMedia('(hover: none)').matches;
+            const itens = document.querySelectorAll('.servico');
+            itens.forEach(function (el) {
+                el.addEventListener('click', function () {
+                    if (!toque) return;
+                    const abrir = !el.classList.contains('aberto');
+                    itens.forEach(function (o) { o.classList.remove('aberto'); o.setAttribute('aria-expanded', 'false'); });
+                    if (abrir) { el.classList.add('aberto'); el.setAttribute('aria-expanded', 'true'); }
+                });
+                el.addEventListener('keydown', function (e) {
+                    if (toque && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); el.click(); }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
